@@ -4,7 +4,7 @@ module.exports = {
   comments: false,
   presets: [
     [
-      '@babel/preset-es2015',
+      '@babel/preset-env',
       {
         shippedProposals: true,
         modules: process.env.MODULE ? false : 'commonjs',
@@ -20,7 +20,6 @@ module.exports = {
     [
       '@babel/transform-runtime',
       {
-        polyfill: false,
         regenerator: false
       }
     ]

@@ -1,5 +1,6 @@
 import { printSchema } from 'graphql/utilities';
 import { EOL } from 'os';
+import { auto } from 'eol';
 
 const INDENT_SPACE = '  ';
 const INPUT_NAME_LOOKUP_PATTERN = /([\W]|^)(input|enum)\s+(\w+)[\s]{0,}\{?/;
@@ -146,7 +147,10 @@ const formatSchema = schemaText => {
  */
 const gqlExtI = (schema, extendGraphqlText, returnCompleteSchema = false) => {
   const schemaText = typeof schema === 'string' ? schema : printSchema(schema);
-  const newSchema = extendInputFromText(schemaText, extendGraphqlText);
+  const newSchema = extendInputFromText(
+    auto(schemaText),
+    auto(extendGraphqlText)
+  );
 
   if (returnCompleteSchema) return formatSchema(newSchema.schema);
   return formatSchema(newSchema.partial);
